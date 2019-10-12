@@ -36,8 +36,8 @@ exports.delete = async (req, res)=> {
 
 
 
-// get requests
-exports.all = async (req, res)=> {
+// get agency requests
+exports.requests = async (req, res)=> {
     let response =  { requests: [] }
 
     let { id } = req.params
@@ -45,6 +45,68 @@ exports.all = async (req, res)=> {
     let requests0 = await Models.FosterRequest.find({ agency: id })
     let requests1 = await Models.FosterRequest.find({ agency: 'any' })
     response.requests = requests0.concat(requests1)
+
+    res.json(response)
+}
+
+
+// get all agencies
+exports.all = async (req, res)=> {
+    let response =  { agencies: [] }
+
+    let { city } = req.query
+
+    let agencies = city ? await Models.Agency.find({}) : await Models.Agency.find({ city })
+    
+    response.agencies = agencies
+
+    res.json(response)
+}
+
+
+// add staff
+exports.add_staff = async (req, res)=> {
+    let response =  { saved: false }
+
+    let { id } = req.params
+    let { staff_id } = req.body
+
+    let staff = await Models.Staff.findById(staff_id)
+    if( !staff ) return res.json(response)
+
+    let agency = await Models.Agency.findById(id)
+    if( !agency ) return res.json(response)
+
+    let staff = agency.staff.push(agency)
+    
+    await Models.Agency.findByIdAndUpdate(id, { staff })
+    
+    response.saved = true
+
+    res.json(response)
+}
+
+
+
+// remove staff
+exports.remove_staff = async (req, res)=> {
+    let response =  { agencies: [] }
+
+
+    let { id } = req.params
+    let { staff_id } = req.body
+
+    let staff = await Models.Staff.findById(staff_id)
+    if( !staff ) return res.json(response)
+
+    let agency = await Models.Agency.findById(id)
+    if( !agency ) return res.json(response)
+
+    let staff = agency.staff.filter((staf)=> staf._id != staff_id )
+    
+    await Models.Agency.findByIdAndUpdate(id, { staff })
+    
+    response.saved = true
 
     res.json(response)
 }

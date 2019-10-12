@@ -17,7 +17,7 @@ Famre is a foster care adoption system. It helps governments and officials who r
 care system or any foster facilities manage child adoption.  
 
 Before downloading and running this server, [download and install Node.js](https://nodejs.org/en/download/).
-Node.js 8.* or higher is required as well as [mongo](https://mongo.com/downloads/).
+Node.js 8.* or higher is required as well as [mongo](https://mongodb.com/download-center/).
 
 Installation is done by first using the `npm clone` command to get the repo then copying the contents of db.sql and creating the database 
 

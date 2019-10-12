@@ -9,6 +9,7 @@ const Morgan = require('morgan')
 const StaffRoutes = require('./app/routes/gov-staff')
 const AgencyRoutes = require('./app/routes/agency')
 const RequestRoutes = require('./app/routes/foster-request')
+const FamilyRoutes = require('./app/routes/family')
 
 // routes
 
@@ -49,6 +50,7 @@ app.use(BodyParser.urlencoded({ extended: false }))
 app.use('/api/staff', StaffRoutes)
 app.use('/api/request', RequestRoutes)
 app.use('/api/agency', AgencyRoutes)
+app.use('/api/family', FamilyRoutes)
 
 
 

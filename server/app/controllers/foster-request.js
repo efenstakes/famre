@@ -71,9 +71,9 @@ exports.deny = async (req, res)=> {
 exports.for_family = async (req, res)=> {
     let response =  { requests: [] }
 
-    let { ref } = req.params
+    let { ref, id } = req.params
 
-    let requests = await Models.FosterRequest.find({ ref })
+    let requests = await Models.FosterRequest.find({ ref, 'family.id': id })
     response.requests = requests
 
     res.json(response)

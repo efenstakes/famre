@@ -14,6 +14,11 @@ const AgencySchema = Mongoose.Schema({
         type: String
     },
 
+    staff: {
+        type: Array,
+        default: []
+    },
+
     added_on: {
         type: Date, default: Date.now()
     }

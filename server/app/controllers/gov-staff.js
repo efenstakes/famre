@@ -52,6 +52,14 @@ exports.unblock = async (req, res)=> {
 exports.login = async (req, res)=> {
     let response =  { token: null, user: null }
 
+    // create the user token data
+    let token_data = { id: req.user._id, timestamp: Date.now() }
+    let token = Jwt.sign({ data: token_data }, process.env.JWT_SECRET)
+
+    // set the token and user data to be returned in response
+    response.token = token
+    response.user = req.user
+
 
     res.json(response)
 }
