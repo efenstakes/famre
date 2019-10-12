@@ -68,7 +68,7 @@ exports.deny = async (req, res)=> {
 
 
 // get request of a family
-exports.all_family = async (req, res)=> {
+exports.for_family = async (req, res)=> {
     let response =  { requests: [] }
 
     let { ref } = req.params

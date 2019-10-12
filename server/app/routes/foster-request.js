@@ -21,6 +21,9 @@ Router.put('/:id/accept', FosterController.accept)
 // deny
 Router.put('/:id/deny', FosterController.deny)
 
+// get request details for family
+Router.get('/:id', FosterController.for_family)
+
 
 
 module.exports = Router
