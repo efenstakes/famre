@@ -6,6 +6,9 @@ const Cors = require('cors')
 const Morgan = require('morgan')
 
 // include internal libraries
+const StaffRoutes = require('./app/routes/gov-staff')
+const AgencyRoutes = require('./app/routes/agency')
+const RequestRoutes = require('./app/routes/foster-request')
 
 // routes
 
@@ -43,6 +46,9 @@ app.use(BodyParser.urlencoded({ extended: false }))
 
 
 // hook up routes with the app instance
+app.use('/api/staff', StaffRoutes)
+app.use('/api/request', RequestRoutes)
+app.use('/api/agency', AgencyRoutes)
 
 
 
