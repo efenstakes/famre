@@ -11,18 +11,18 @@ Router.post('/', FosterController.add)
 
 
 // delete 
-Router.delete('/:id', FosterController.delete)
+Router.delete('/:id', passport.authenticate('staff-jwt', { session: false }),  FosterController.delete)
 
 
 // accept
-Router.put('/:id/accept', FosterController.accept)
+Router.put('/:id/accept', passport.authenticate('staff-jwt', { session: false }),  FosterController.accept)
 
 
 // deny
-Router.put('/:id/deny', FosterController.deny)
+Router.put('/:id/deny', passport.authenticate('staff-jwt', { session: false }),  FosterController.deny)
 
 // get request details for family
-Router.get('/:id', FosterController.for_family)
+Router.get('/:ref/:id/family',  FosterController.for_family)
 
 
 

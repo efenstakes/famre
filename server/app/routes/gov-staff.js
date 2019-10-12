@@ -11,11 +11,11 @@ Router.post('/', StaffController.add)
 
 
 // block
-Router.put('/:id/block', StaffController.block)
+Router.put('/:id/block', passport.authenticate('staff-jwt', { session: false }), StaffController.block)
 
 
 // unblock
-Router.put('/', StaffController.unblock)
+Router.put('/', passport.authenticate('staff-jwt', { session: false }), StaffController.unblock)
 
 
 // login
