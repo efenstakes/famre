@@ -4,6 +4,7 @@ const Mongoose = require('mongoose')
 
 const AgencySchema = Mongoose.Schema({
 
+    name: String,
     city: String,
     locality: String,            // ex a place in the city
     phone: String,

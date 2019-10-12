@@ -16,6 +16,11 @@ const RequestSchema = Mongoose.Schema({
         email: String
     },
 
+    agency: {                        // agency the request targets
+        type: String, 
+        default: 'any'
+    },
+
     ref: {                            // what the families will auth by
         type: String, 
         required: true
