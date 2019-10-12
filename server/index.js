@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 44556
 
 
 // get database connection 
-
+require('./app/config/database')
 
 // initialize express apllication instance
 const app = Express()
