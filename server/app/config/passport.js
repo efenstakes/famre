@@ -5,7 +5,8 @@ const JwtStrategy = require('passport-jwt').Strategy
 const ExtractJwt = require('passport-jwt').ExtractJwt
 
 
-var Bcrypt = require('bcrypt')
+// var Bcrypt = require('bcrypt')
+const Md5 = require('md5')
 
 
 // import internal libraries
@@ -23,20 +24,22 @@ Passport.use(
             async function(email, password, done) {
 
                 // check if user exists 
-                let user = await Models.Staff.findOne({ email }).exec()
+                let user = await Models.Staff.findOne({ 
+                                    email, password: Md5(password) 
+                                }).exec()
 
                 // details were wrong
                 if ( !user || !user._id ) return done(false)
 
                 // check if password is correct
-                let match = await Bcrypt.compare(password, user.password)
+                // let match = await Bcrypt.compare(password, user.password)
 
                 // if passwords dont match return
-                if ( !match ) return done(false) 
+                // if ( !match ) return done(false) 
                 
-                let { _id, name, joined_on } = user
+                let { _id, name, joined_on, priviledge } = user
                 
-                return done(null, { _id, name, email, joined_on })
+                return done(null, { _id, name, email, priviledge, joined_on })
 
             }
         ) // new LocalStrategy( .. )

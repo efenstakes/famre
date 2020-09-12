@@ -15,11 +15,15 @@ Router.post('/', passport.authenticate('staff-jwt', { session: false }), AgencyC
 Router.delete('/:id', passport.authenticate('staff-jwt', { session: false }), AgencyController.delete)
 
 
+// details 
+Router.get('/:id', AgencyController.details)
+
+
 // get requests
 Router.get('/:id/requests', passport.authenticate('staff-jwt', { session: false }), AgencyController.requests)
 
 // get all agencies
-Router.delete('/', AgencyController.all)
+Router.get('/', AgencyController.all)
 
 // add staff
 Router.put('/:id/add-staff', passport.authenticate('staff-jwt', { session: false }), AgencyController.add_staff)

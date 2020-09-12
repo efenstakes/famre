@@ -1,0 +1,24 @@
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-3 offset-md-3">
+
+            <p *ngIf='!agency'> Loading Agency.. </p>
+
+            <div *ngIf='agency'>
+                <p> Name: {{ agency.name }} </p>
+                <p> Email:  {{ agency.email }} </p>
+                <p> Tel:  {{ agency.phone }} </p>
+                <p> Location:  {{ agency.city }}, {{ agency.locality }} </p>
+                <p> {{ agency.description }} </p>
+            </div>
+           
+        </div>
+        <div class="col-md-3"></div>
+
+    </div>
+
+
+</div>

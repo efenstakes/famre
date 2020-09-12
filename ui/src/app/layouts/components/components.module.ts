@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 
 
@@ -14,7 +15,8 @@ import { AppFooterComponent } from './app-footer/app-footer.component';
     AgencyDetailComponent, AppNavBarComponent, AppFooterComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    BrowserModule
   ]
 })
 export class ComponentsModule { }

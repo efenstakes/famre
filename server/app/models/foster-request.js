@@ -1,6 +1,6 @@
 // include external libraries
 const Mongoose = require('mongoose')
-const Bcrypt = require('bcrypt')
+// const Bcrypt = require('bcrypt')
 
 
 const RequestSchema = Mongoose.Schema({
@@ -9,8 +9,7 @@ const RequestSchema = Mongoose.Schema({
         city: String,
         locality: String,            // ex a place in the city
         number_of_parents: Number,
-        age: Number,
-        work: String,
+        works: String,
         id: Number,                  // national id
         phone: String,
         email: String
@@ -33,6 +32,10 @@ const RequestSchema = Mongoose.Schema({
     accepted: {
         status: { type: Boolean, default: false },
         date: { type: Date }
+    },
+
+    seen: {
+        type: Boolean, default: false
     },
 
     made_on: {

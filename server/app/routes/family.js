@@ -21,3 +21,5 @@ Router.post('login',  async (req, res)=> {
     res.json(response)
 })
 
+
+module.exports = Router

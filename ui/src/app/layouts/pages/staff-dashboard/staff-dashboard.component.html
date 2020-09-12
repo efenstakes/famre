@@ -1,0 +1,160 @@
+
+
+<div class="row bg-dark app-nav">
+
+    <div class="col-md-3">
+        <a class="navbar-brand" routerLink="/"> Foster </a>
+    </div>
+
+    <div class="col-md-9">
+
+            <ul class="nav justify-content-end">
+        
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/agencies"> View Agencies </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/agency/add"> Add Agency </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/portals/staff/logout"> Logout </a>
+                </li>
+                
+            </ul>
+
+    </div>
+
+</div> 
+
+
+
+
+
+<div class="container">
+
+
+
+    <div class="row">
+        <div class="col-md-8">
+
+            <!-- filters -->
+            <div class="row" style="margin-top: 50px; margin-bottom: 20px;">
+                <div class="col-md-2">
+                    <p><strong> Filters </strong></p>
+                </div>
+                <div class="col-md-8">
+                    <button class="btn filter-btns" 
+                            [ngClass]="{'btn-primary': filter == 'unseen', 'btn-outline-primary': filter != 'unseen'}" 
+                            (click)="filter_now('unseen')"
+                        > UNSEEN </button>
+            
+                    <button class="btn filter-btns" 
+                            [ngClass]="{'btn-primary': filter == 'seen', 'btn-outline-primary': filter != 'seen'}" 
+                            (click)="filter_now('seen')"
+                        > SEEN </button>
+            
+                    <button class="btn filter-btns" 
+                            [ngClass]="{'btn-primary': filter == 'all', 'btn-outline-primary': filter != 'all'}" 
+                            (click)="filter_now('all')"
+                        > ALL </button>
+                </div>
+            </div>
+    
+            <!-- show a list of requests -->
+            <table class="table table-hover" id='print-section'>
+                <thead>
+                    <tr>
+                        <th> Location </th>
+                        <th> Age Range (yrs) </th>
+                        <th> Agency </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let request of requests.filtered" (click)="select_request(request)">
+                        <td> {{ request.family.locality }}, {{ request.family.city }} </td>
+                        <td> {{ request.age_range }} </td>
+                        <td> {{ request.agency }} </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- print -->
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+
+                    <button class="btn btn-outline-primary btn-block"
+                        style="margin-top: 100px;"
+                        printSectionId="print-section" ngxPrint>
+                        PRINT
+                    </button>
+
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+    
+        </div>
+        <div class="col-md-4">
+    
+    
+            <div class='' style="margin-top: 10%;" *ngIf='selected_request'>
+                <p> <strong>ADOPTION REQUEST DETAILS</strong></p>
+                <p> 
+                    <strong>Age Range</strong> 
+                    {{ selected_request.age_range }} yrs </p>
+                <p> 
+                    <strong>Locality</strong> 
+                    {{ selected_request.family.locality }}, {{ selected_request.family.city }} </p>
+                <p> 
+                    <strong>Number Of Parents</strong> 
+                    {{ selected_request.family.number_of_parents }} </p>
+                <p> 
+                    <strong>Phone</strong> 
+                    {{ selected_request.family.phone }} </p>
+                <p> 
+                    <strong>Email</strong> 
+                    {{ selected_request.family.email }} </p>
+                <p> 
+                    <strong>National ID</strong> 
+                    {{ selected_request.family.id }} </p>
+                <p> 
+                    <strong>Made On</strong> 
+                    {{ selected_request.made_on | date }} </p>
+                <p> 
+                    <strong>Request ID</strong> <strong>{{ selected_request.ref }}</strong> </p>
+                <p *ngIf='selected_request.accepted.status'> Status <strong>ACCEPTED</strong> </p>
+                <p *ngIf='!selected_request.accepted.status'> Status <strong>DENIED</strong> </p>
+    
+                <div class="row">
+                    <div class="col-md-6">
+                        
+                        <button class='btn btn-primary' 
+                                (click)="accept(selected_request)"
+                            > ACCEPT </button>
+
+                    </div>
+                    <div class="col-md-6">
+                        
+                        <button class='btn btn-outline-danger' 
+                            (click)="deny(selected_request)"
+                            > DENY </button>
+
+                    </div>
+                </div>
+    
+            </div>
+            <div class='' *ngIf='!selected_request'>
+                <p id='selected_request_text' 
+                   class='text-center'> 
+                   <strong> Select A Request </strong>   
+                </p>
+            </div>
+    
+    
+            
+        </div>
+    </div>
+            
+
+
+
+</div>

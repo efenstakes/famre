@@ -1,0 +1,27 @@
+
+
+.footer {
+    margin-top: 64px;
+    padding-top: 20px;
+    width: 100vw;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: azure;
+}
+
+.footer-items {
+    display: flex;
+    justify-content: center;
+}
+
+.footer-item {
+    padding: 0 20px 0 20px;
+}
+
+.copy {
+    margin-top: 20px;
+    align-self: center;
+}
+

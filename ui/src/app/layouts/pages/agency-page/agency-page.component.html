@@ -1,0 +1,63 @@
+
+
+
+<div class="row bg-dark app-nav">
+
+    <div class="col-md-3">
+        <a class="navbar-brand" routerLink="/"> Foster </a>
+    </div>
+
+    <div class="col-md-9">
+
+            <ul class="nav justify-content-end">
+        
+                <li class="nav-item">
+                        <a class="nav-link" routerLink="/agencies"> View Agencies </a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" routerLink="/foster-request/make"> Make Foster Request </a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" routerLink="/foster-request/check"> Check Foster Request </a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" routerLink="/about"> About </a>
+                </li>
+            </ul>
+
+    </div>
+
+</div> 
+        
+
+
+<div class="container">
+
+    <div class="row" style='margin-top: 8%;'>
+
+        <div class="col-md-3 offset-md-3">
+
+            <a class="btn btn-outline-primary"
+               style="margin-bottom: 20%;" 
+               routerLink="/agencies"
+                > Back to Agencies </a>
+     
+     
+            <p *ngIf='!agency'> Loading Agency.. </p>
+
+            <div *ngIf='agency'>
+                <h3> {{ agency.name }} </h3>
+                <p> Email:  {{ agency.email }} </p>
+                <p> Tel:  {{ agency.phone }} </p>
+                <p> Location:  {{ agency.city }}, {{ agency.locality }} </p>
+                <p> {{ agency.description }} </p>
+                <p> Since: {{ agency.added_on | date }} </p>
+            </div>
+           
+        </div>
+        <div class="col-md-3"></div>
+
+    </div>
+
+
+</div>

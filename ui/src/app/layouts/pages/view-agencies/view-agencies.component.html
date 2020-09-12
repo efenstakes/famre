@@ -1,1 +1,59 @@
-<p>view-agencies works!</p>
+
+
+<div class="row bg-dark app-nav">
+
+    <div class="col-md-3">
+        <a class="navbar-brand" routerLink="/"> Foster </a>
+    </div>
+
+    <div class="col-md-9">
+
+            <ul class="nav justify-content-end">
+        
+                <li class="nav-item">
+                        <a class="nav-link" routerLink="/agencies"> View Agencies </a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" routerLink="/foster-request/make"> Make Foster Request </a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" routerLink="/foster-request/check"> Check Foster Request </a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" routerLink="/about"> About </a>
+                </li>
+            </ul>
+
+    </div>
+
+</div> 
+
+
+<div class="container">
+
+    <!-- if no agencies -->
+    <div id="no-agencies" *ngIf='agencies.length == 0'>
+        <p class="text-center" id="no-agencies-text"> There Are No Agencies Yet </p>
+    </div>
+    <!-- if no agencies -->
+
+    <!-- list agencies -->
+    <div class="row">
+
+        <div class="card col-md-3" *ngFor='let agency of agencies'>
+
+           <p> Name: {{ agency.name }} </p>
+           <p> Email:  {{ agency.email }} </p>
+           <p> Tel:  {{ agency.phone }} </p>
+           <p> Location:  {{ agency.city }}, {{ agency.locality }} </p>
+           <p> {{ agency.description }} </p>
+           
+           <button class="btn btn-outline-primary" 
+              (click)="view_agency(agency)"> View </button>
+
+        </div>
+
+    </div>
+
+
+</div>

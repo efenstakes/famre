@@ -1,5 +1,6 @@
 // include external libraries
-
+var Md5 = require('md5')
+const Jwt = require('jsonwebtoken')
 
 // include external libraries
 const Models = require('../models')
@@ -11,7 +12,11 @@ exports.add = async (req, res)=> {
 
     let { name, email, password, priviledge } =  req.body
 
-    let staff = await Models.Staff({ name, email, password, priviledge }).save()
+    password = Md5(password)
+
+    let staff = await Models.Staff({ 
+                          name, email, password, priviledge 
+                    }).save()
     if( !staff || !staff._id ) return res.json(response)
 
     response.saved = true 

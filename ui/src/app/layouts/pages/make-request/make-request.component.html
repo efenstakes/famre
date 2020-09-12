@@ -1,1 +1,209 @@
-<p>make-request works!</p>
+
+
+<div class="row bg-dark app-nav">
+
+    <div class="col-md-3">
+        <a class="navbar-brand" routerLink="/"> Foster </a>
+    </div>
+
+    <div class="col-md-9">
+
+            <ul class="nav justify-content-end">
+        
+                <li class="nav-item">
+                        <a class="nav-link" routerLink="/agencies"> View Agencies </a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" routerLink="/foster-request/make"> Make Foster Request </a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" routerLink="/foster-request/check"> Check Foster Request </a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" routerLink="/about"> About </a>
+                </li>
+            </ul>
+
+    </div>
+
+</div> 
+    
+
+<div class="row">
+
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+
+
+        <form style="margin-top: 16%;">
+
+            <div *ngIf='current_step == 1 && !saved'>
+
+                <h5 class="section-titles"> Child Details </h5>
+                <small>
+                    Enter the age range for the child you want to adopt
+                </small>
+                <div style="margin-bottom: 40px;"></div>
+                
+                <!-- age range -->
+                <div class="form-group">
+                    <label for="age_range"> Age Range </label>
+                    <select class="form-control" id="age_range" name="age_range" [(ngModel)]="age_range">
+                        <option value="any"> Any </option>
+                        <option value="2-4"> 2-4 </option>
+                        <option value="4-7"> 4-7 </option>
+                        <option value="7-11"> 7-11 </option>
+                        <option value="11-14"> 11-14 </option>
+                        <option value="14 And Above"> 14 And Above </option>
+                    </select>
+                </div>
+                <!-- age range -->
+
+                <div class="row next_prev_navigator">
+                    <div class="col-md-4 offset-md-8">
+                        <button class="btn btn-outline-primary btn-block" (click)='go_next_step()'> Next </button>
+                    </div>
+                </div>
+
+            </div>
+            <!-- <div *ngIf='current_step == 1'> -->
+
+            <div *ngIf='current_step == 2 && !saved'>
+
+                <h5 class="section-titles"> Family Details </h5>
+                <small>
+                    Enter your family details. These inform adoption 
+                    officers on your identity, status and also a way 
+                    to contact you.
+                </small>
+                <div style="margin-bottom: 40px;"></div>
+
+
+                <!-- city -->
+                <div class="form-group">
+                <label for="city"> City </label>
+                <input type="text" class="form-control" name="city" type="text" [(ngModel)]="family.city">
+                </div>
+                <!-- city -->
+
+                <!-- locality -->
+                <div class="form-group">
+                    <label for="locality"> Locality </label>
+                    <input type="text" class="form-control" name="locality" type="text" [(ngModel)]="family.locality">
+                </div>
+                <!-- locality -->
+            
+                <!-- number of parents -->
+                <div class="form-group">
+                    <label for="number_of_parents"> Number Of Parents </label>
+                    <input type="number" class="form-control" name="number_of_parents" type="number" [(ngModel)]="family.number_of_parents">
+                </div>
+                <!-- number of parents -->
+                
+                <!-- national id -->
+                <div class="form-group">
+                    <label for="id"> National ID </label>
+                    <input type="text" class="form-control" name="id" type="number" [(ngModel)]="family.id">
+                </div>
+                <!-- national id -->
+                
+                <!-- phone -->
+                <div class="form-group">
+                    <label for="phone"> Phone </label>
+                    <input type="tel" class="form-control" name="phone" type="tel" [(ngModel)]="family.phone">
+                </div>
+                <!-- phone -->
+                
+                <!-- email -->
+                <div class="form-group">
+                    <label for="email"> Email </label>
+                    <input type="email" class="form-control" name="email" type="email" [(ngModel)]="family.email">
+                </div>
+                <!-- email -->
+                
+                <!-- do you work -->
+                <label class="form-check-label" style="margin-left: 4%;">
+                    <input type="checkbox" class="form-check-input" value="" name="works" [(ngModel)]="family.works"> Do you have a stable job?
+                </label>
+                <!-- do you work -->
+       
+                <div class="row next_prev_navigator">
+                    <div class="col-md-4">
+                        <button class="btn btn-outline-primary btn-block" (click)='go_prev_step()'> Previous </button>
+                    </div>
+                    <div class="col-md-4 offset-md-4">
+                        <button class="btn btn-outline-primary btn-block" (click)='go_next_step()'> Next </button>
+                    </div>
+                </div>
+
+            </div>
+            <!-- <div *ngIf='current_step == 2'> -->
+
+            <div *ngIf='current_step == 3 && !saved'>
+
+                <h5 class="section-titles"> Agency Details </h5>
+
+                <p style="font-size: .8em;"> If you dont enter the request wil be broadcasted to all foster facilities in your city </p>
+                <!-- agency -->
+                <div class="form-group">
+                    <label for="agency"> Agency Name </label>
+                    <input type="text" class="form-control" name="agency" [(ngModel)]="agency">
+                </div>
+                <!-- agency -->
+
+                <div class='alert alert-danger' *ngIf="errored"> 
+                    An Error Occured While Saving Your Request 
+                </div>
+
+                <!-- if loading -->
+                <div class="row" >
+                    <div class="col-md-2 offset-md-5">
+                        <p *ngIf="is_loading" class="spinner-border text-primary"></p>
+                    </div>
+                </div>
+
+
+                <div class="row next_prev_navigator" >
+                    <div class="col-md-4">
+                        <button class="btn btn-outline-primary btn-block" (click)='go_prev_step()'> Previous </button>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-block" (click)="make_request()"> Make Request </button>
+
+            </div>
+            <!-- <div *ngIf='current_step == 3'> -->    
+
+        
+        </form>
+
+
+       
+
+
+    </div>
+    <div class="col-md-4"></div>
+
+</div>
+
+<!-- if saving was a success -->
+<div class="row" *ngIf="saved" style="margin-top: 8%;">
+            
+    <div class="offset-md-2 col-md-8">
+        
+        <div class="alert alert-success">
+            <p class="text-center">
+                Your adoption request has been successfully made
+            </p>
+        </div>
+
+
+        <p class="text-center">
+            Your adoption request code is {{ adoption_code }}. You Can Go Check Your Request Status Now.
+        </p>
+
+        <button class="btn btn-primary btn-block" (click)="go_to_check_status()"> Check Status </button>
+
+    </div>
+
+</div>

@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { StaffDashboardComponent } from './staff-dashboard.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [StaffDashboardComponent],
   imports: [
     CommonModule
   ]

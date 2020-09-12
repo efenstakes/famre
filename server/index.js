@@ -4,6 +4,8 @@ const BodyParser = require('body-parser')
 const DotEnv = require('dotenv')
 const Cors = require('cors')
 const Morgan = require('morgan')
+const Passport = require('passport')
+
 
 // include internal libraries
 const StaffRoutes = require('./app/routes/gov-staff')
@@ -17,7 +19,7 @@ const FamilyRoutes = require('./app/routes/family')
 
 // get environment vars from .env
 DotEnv.config()
-const PORT = process.env.PORT || 44556
+const PORT = process.env.PORT || 3456
 
 
 // get database connection 
@@ -40,10 +42,12 @@ app.use(BodyParser.urlencoded({ extended: false }))
 
 
 // setup passport
+app.use(Passport.initialize())
+app.use(Passport.session())
 
 
 // include passport middleware
-
+require('./app/config/passport')
 
 
 // hook up routes with the app instance

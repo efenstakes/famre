@@ -1,6 +1,6 @@
 // include external libraries
 const Mongoose = require('mongoose')
-const Bcrypt = require('bcrypt')
+// const Bcrypt = require('bcrypt')
 
 
 const StaffSchema = Mongoose.Schema({
@@ -40,7 +40,7 @@ const StaffSchema = Mongoose.Schema({
 
 // hash the password before saving a record
 StaffSchema.pre('save', function(next) {
-    this.password = Bcrypt.hashSync(this.password, 10)
+    // this.password = Bcrypt.hashSync(this.password, 10)
     next()
 })
 

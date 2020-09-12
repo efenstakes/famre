@@ -9,6 +9,8 @@ const FosterController = require('../controllers/foster-request')
 // add 
 Router.post('/', FosterController.add)
 
+// details 
+Router.get('/:code', FosterController.details)
 
 // delete 
 Router.delete('/:id', passport.authenticate('staff-jwt', { session: false }),  FosterController.delete)
@@ -23,6 +25,9 @@ Router.put('/:id/deny', passport.authenticate('staff-jwt', { session: false }), 
 
 // get request details for family
 Router.get('/:ref/:id/family',  FosterController.for_family)
+
+// all 
+Router.get('/', FosterController.all)
 
 
 

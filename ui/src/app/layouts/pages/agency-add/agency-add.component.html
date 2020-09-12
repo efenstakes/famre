@@ -1,0 +1,126 @@
+
+
+<div class="row bg-dark app-nav">
+
+    <div class="col-md-3">
+        <a class="navbar-brand" routerLink="/"> Foster </a>
+    </div>
+
+    <div class="col-md-9">
+
+            <ul class="nav justify-content-end">
+        
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/agencies"> View Agencies </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/agency/add"> Add Agency </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/portals/staff/logout"> Logout </a>
+                </li>
+                
+            </ul>
+
+    </div>
+
+</div> 
+
+<div class="row" *ngIf='!saved'>
+
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+
+        
+        <a class="btn btn-primary" 
+           routerLink="/portals/staff/dashboard"> Back </a>
+
+
+        <form style="margin-top: 10%;">
+
+            <!-- name -->
+            <div class="form-group">
+                <label for="name"> Name </label>
+                <input type="text" class="form-control" name="name" [(ngModel)]="name">
+            </div>
+            <!-- name -->
+
+            <!-- email -->
+            <div class="form-group">
+                <label for="email"> Email </label>
+                <input type="email" class="form-control" name="email" [(ngModel)]="email">
+            </div>
+            <!-- email -->
+
+            <!-- phone -->
+            <div class="form-group">
+                <label for="Phone"> phone </label>
+                <input type="tel" class="form-control" name="phone" [(ngModel)]="phone">
+            </div>
+            <!-- phone -->
+            
+            <!-- city -->
+            <div class="form-group">
+                <label for="name"> City </label>
+                <input type="text" class="form-control" name="city" [(ngModel)]="city">
+            </div>
+            <!-- city -->
+
+            <!-- locality -->
+            <div class="form-group">
+                <label for="name"> Locality </label>
+                <input type="text" class="form-control" name="locality" [(ngModel)]="locality">
+            </div>
+            <!-- locality -->
+
+            <!-- description -->
+            <div class="form-group">
+                <label for="name"> Description </label>
+                <textarea class="form-control" name="description" 
+                          [(ngModel)]="description"
+                          placeholder='Agency Description'></textarea>
+            </div>
+            <!-- description -->
+
+
+            <div *ngIf="has_error" class="alert alert-danger">
+               {{ error }}
+            </div>
+                    
+            <button class="btn btn-primary btn-block" 
+                    (click)="add()"
+                    style='margin-top: 50px; margin-bottom: 50px;'
+                > Add Agency </button>
+        
+        </form>
+
+
+
+    </div>
+    <div class="col-md-4"></div>
+
+</div>
+
+<!-- if saved -->
+<div class="" *ngIf='saved'>
+
+    <p class="text-center"
+       style="margin-top: 16%; font-size: 1.4em;"> 
+       <strong>
+            {{ name }} Has Successfully Been Saved 
+       </strong>
+    </p>
+
+    <p class="text-center">
+        <a class="btn btn-outline-primary"
+            routerLink="/agencies">
+            View Agencies
+        </a>
+        <a class="btn btn-outline-primary"
+            routerLink="/portals/staff/dashboard"
+            style="margin-left: 20px;">
+            View Dashboard
+        </a>
+    </p>
+
+</div>    

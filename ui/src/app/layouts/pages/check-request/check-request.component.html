@@ -1,1 +1,73 @@
-<p>check-request works!</p>
+
+
+
+<div class="row bg-dark app-nav">
+
+    <div class="col-md-3">
+        <a class="navbar-brand" routerLink="/"> Foster </a>
+    </div>
+
+    <div class="col-md-9">
+
+            <ul class="nav justify-content-end">
+        
+                <li class="nav-item">
+                        <a class="nav-link" routerLink="/agencies"> View Agencies </a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" routerLink="/foster-request/make"> Make Foster Request </a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" routerLink="/foster-request/check"> Check Foster Request </a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" routerLink="/about"> About </a>
+                </li>
+            </ul>
+
+    </div>
+
+</div> 
+    
+
+<div class="row">
+
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+
+
+        <div *ngIf="!request">
+
+            <h5> Check Your Foster Request Status </h5>
+
+            <div class="form-group" style="margin-top: 30%;">
+                <label for="request_code"> Foster Request Code </label>
+                <input type="text" class="form-control" id="request_code" [(ngModel)]="code" placeholder="Enter your foster request code to check">
+            </div>
+            
+            <div *ngIf="error" class="alert alert-danger">
+                <p class="text-center"><strong> {{ error }} </strong></p>
+            </div>
+            
+            <button class="btn btn-primary btn-block" style="margin-top: 24px;" (click)="check_status()"> Let's Go </button>
+            
+
+        </div>
+        
+        <div *ngIf='request' style="margin-top: 24%;">
+
+            <h5> Adoption Request Status </h5>
+
+            <p> Code {{ request.ref }} </p>
+            <p> Child Age Range {{ request.age_range }} </p>
+            <p> Agency {{ request.agency }} </p>
+            <p> Made On {{ request.made_on }} </p>
+
+            <button class="btn btn-primary btn-block" style="margin-top: 24px;" (click)="search_again()"> Search Again </button>
+            
+        </div>
+
+    </div>
+    <div class="col-md-4"></div>
+
+</div>
